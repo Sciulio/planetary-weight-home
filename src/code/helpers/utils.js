@@ -1,0 +1,1 @@
+export const randName = (prefix = '') => prefix + '_' + Math.random().toString().replace('.', '_')

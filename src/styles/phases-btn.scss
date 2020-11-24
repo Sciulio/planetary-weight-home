@@ -1,0 +1,49 @@
+.start-btn {
+  display: inline-block;
+
+  margin: 5px 0;
+  padding: 8px 0 4px 0;
+  
+  box-shadow: 0 .2em gray;
+  
+  background-color: lightgray;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px;
+
+  color: gray;
+  font-size: 0.9rem !important;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: -1px -1px black, 1px 1px white;
+
+  cursor: pointer;
+
+  text-transform: uppercase;
+}
+.start-btn:active {
+  box-shadow: none;
+  position: relative;
+  top: .2em;
+}
+
+input {
+  margin: 5px;
+  padding: 10px 0 10px 10px;
+
+  background-color: #efefef;
+  border-width: 0;
+  box-shadow: 0 0.2em inset #aaa;
+  border-radius: 7px;
+
+  font-size: 0.5rem;
+  text-align: left;
+  font-weight: bold;
+  text-shadow: 1px 1px black, -1px -1px white;
+  color: gray;
+}
+input:active,
+input:focus {
+  background-color: #fff;
+}

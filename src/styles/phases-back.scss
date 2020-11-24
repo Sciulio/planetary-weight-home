@@ -1,0 +1,36 @@
+@mixin back-gradient($clrSet) {
+  @include prefix(
+    background,
+    linear-gradient(
+      map-get($clrSet, "back-2"),
+      map-get($clrSet, "back-1")
+    ),
+    o ms moz webkit
+  );
+}
+
+.back,
+.back > * {
+  position: fixed;
+
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+
+  z-index: -10;
+
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.back > * {
+  opacity: 0;
+
+  @include prefix(background-size, cover);
+}
+
+body > :not(.back) {
+  z-index: 1000;
+}

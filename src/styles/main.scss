@@ -1,0 +1,80 @@
+@import "./helpers/main.scss";
+
+@import "./fonts.scss";
+@import "./base.scss";
+
+@import "./params.scss";
+@import "./phases-back.scss";
+@import "./phases-planets.scss";
+@import "./phases-btn.scss";
+
+
+$offScreen: 200%;
+
+.phases {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+
+  overflow-x: hidden;
+  
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  
+  -ms-box-orient: horizontal;
+}
+.phases > * {
+  position: absolute;
+
+  width: 100vw;
+  height: 100vh;
+  
+  top: 0;
+  left: 0;
+}
+
+// generate standard styles for phases
+@each $phase-name, $phase-value in $phases-colors {
+  $phase-index: index($phases-colors, $phase-name $phase-value);
+
+  .#{"back-"}#{$phase-name} {
+    .back > & {
+      //@include back-gradient($phase-value);
+      transition: opacity map-get-default($phase-value, "delay-out", 0) ease;
+      opacity: 0;
+    }
+    
+    @at-root body#{&} > .back > .#{$phase-name} {
+      transition: opacity map-get-default($phase-value, "delay-in", 0) ease;
+      opacity: 1;
+    }
+  }
+  
+  // phases
+  @each $nested-phase-name, $nested-phase-value in $phases-colors {
+    $nested-phase-index: index($phases-colors, $nested-phase-name $nested-phase-value);
+
+    .#{$phase-name} {
+      @at-root body#{&} .phases > .#{$nested-phase-name} {
+        transform: translate((($nested-phase-index) - ($phase-index)) * $offScreen, 0);
+      }
+    }
+  }
+
+  /*@at-root .phases > .#{$phase-name} {
+    transform: translate($phase-index * 100%, 0);
+  }
+  .#{$phase-name} {
+    @at-root body#{&} .phases > .#{$phase-name} {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+  }*/
+  
+  @each $dayPhase-name, $dayPhase-value in map-get($phase-value, "day-phases") {
+    body.#{$dayPhase-name} > .back > .#{$phase-name} {
+      @include back-gradient($dayPhase-value);
+    }
+  }
+}

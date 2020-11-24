@@ -1,0 +1,6 @@
+@function map-get-default($map, $key, $default) {
+  @if (not map-has-key($map, $key)) {
+    @return $default;
+  }
+  @return map-get($map, $key);
+}

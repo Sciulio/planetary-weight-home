@@ -1,0 +1,161 @@
+.infra {
+  position: fixed !important;
+}
+
+.infra,
+.planets,
+.clouds,
+.clouds > * {
+  overflow: none !important;
+  overflow: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+
+  * {
+    position: absolute;
+    animation-duration: 7s;
+    animation-timing-function: ease-in;
+  }
+}
+
+.planets {
+  .earth {
+    top: 90%;
+    left: 50%;
+    transform: scale(2.5) rotateZ(-5deg);
+    /* bring your own prefixes */
+    //transform: translate(-50%, -50%);
+    
+    /*@at-root body.phase-1 & {
+      transform: translate(-50%, -50%);
+    }
+    @at-root body.phase-2 & {
+      transform: translate(50%, 250%);
+    }*/
+
+    @each $phase-name, $phase-value in $phases-colors {
+      $phase-index: index($phases-colors, $phase-name $phase-value);
+
+      @at-root body.#{$phase-name} & {
+        opacity: 0.5 + 0.5 / $phase-index;
+        transform: translateY(- $phase-index * 10%) scale(2 + .5 / $phase-index) rotateZ(-5deg);
+      }
+    }
+  }
+}
+
+.clouds {
+  * {
+    opacity: .9;
+  }
+
+  @each $phase-name, $phase-value in $phases-colors {
+    $phase-index: index($phases-colors, $phase-name $phase-value);
+
+    @at-root body.#{$phase-name} .clouds > * > * {
+      opacity: 1 / $phase-index;
+    }
+
+    /*@at-root body.#{$phase-name} .clouds > clouds_1 > * {
+      transform: scale(1.5 / $phase-index);
+    }*/
+  }
+
+
+  & > .clouds_1 {
+    .cloud_1 {
+      top: 60%;
+      left: 10%;
+      transform: scale(0.6);
+    }
+    .cloud_2 {
+      top: 15%;
+      left: 75%;
+      transform: scale(0.7);
+    }
+    .cloud_3 {
+      top: 5%;
+      left: 2.5%;
+      transform: scale(0.55);
+    }
+  }
+  & > .clouds_2 {
+    .cloud_1 {
+      top: 60%;
+      left: 15%;
+      transform: scale(0.6);
+    }
+    .cloud_2 {
+      top: 15%;
+      left: 75%;
+      transform: scale(0.7);
+    }
+  }
+}
+
+.anim-bounce-infinite-a,
+.anim-bounce-infinite-b,
+.anim-bounce-infinite-c {
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out; // cubic-bezier(.4,0,.2,1);
+}
+
+.anim-bounce-infinite-a {
+  animation-name: kf-bounce-infinite-a;
+  animation-duration: 7.5s;
+}
+.anim-bounce-infinite-b {
+  animation-name: kf-bounce-infinite-b;
+  animation-duration: 8.5s;
+}
+.anim-bounce-infinite-c {
+  animation-name: kf-bounce-infinite-c;
+  animation-duration: 9s;
+}
+
+@keyframes kf-bounce-infinite-a {
+  0%,100% {
+    transform: translate(0, 0)
+  }
+  10% {
+    transform: translate(0, 2px)
+  }
+  50% {
+    transform: translate(-5px, -7px)
+  }
+  90% {
+    transform: translate(2px, 4px)
+  }
+}
+@keyframes kf-bounce-infinite-b {
+  0%,100% {
+    transform: translate(0, 0)
+  }
+  15% {
+    transform: translate(-2px, 4px)
+  }
+  40% {
+    transform: translate(-8px, -2px)
+  }
+  80% {
+    transform: translate(-2px, 1px)
+  }
+}
+@keyframes kf-bounce-infinite-c {
+  0%,100% {
+    transform: translate(0, 0)
+  }
+  10% {
+    transform: translate(3px, 2px)
+  }
+  60% {
+    transform: translate(-2px, 4px)
+  }
+  75% {
+    transform: translate(1px, 2px)
+  }
+}

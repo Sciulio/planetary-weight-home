@@ -1,0 +1,62 @@
+$phases-transition-time-in: 2s;
+$phases-transition-time-out: 2s;
+
+$phases-colors: (
+  "phase-1": (
+    "day-phases": (
+      "day-phase-1": (
+        "back-1": #EAAC8B,
+        "back-2": #E56B6F
+      ),
+      "day-phase-2": (
+        "back-1": #89C2D9,
+        "back-2": #468FAF
+      )
+    ),
+    "delay-out": $phases-transition-time-in
+  ),
+  "phase-2": (
+    "day-phases": (
+      "day-phase-1": (
+        "back-1": #E56B6F,
+        "back-2": #B56576
+      ),
+      "day-phase-2": (
+        "back-1": #468FAF,
+        "back-2": #2A6F97
+      )
+    ),
+    "delay-out": $phases-transition-time-out,
+    "delay-in": $phases-transition-time-in
+  ),
+  "phase-3": (
+    "day-phases": (
+      "day-phase-1": (
+        "back-1": #B56576,
+        "back-2": #6D597A
+      ),
+      "day-phase-2": (
+        "back-1": #2A6F97,
+        "back-2": #01497C
+      )
+    ),
+    "delay-out": $phases-transition-time-out,
+    "delay-in": $phases-transition-time-in
+  ),
+  "phase-4": (
+    "day-phases": (
+      "day-phase-1": (
+        "back-1": #6D597A,
+        "back-2": #355070
+      ),
+      "day-phase-2": (
+        "back-1": #01497C,
+        "back-2": #012A4A
+      )
+    ),
+    "delay-out": $phases-transition-time-out,
+    "delay-in": $phases-transition-time-in
+  )
+);
+
+// 355070-6d597a-b56576-e56b6f-eaac8b
